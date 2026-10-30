@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Air Quality & Pollution Analysis</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js library for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">🌿 AirSense</div>
+
+        <nav>
+            <a href="#home" class="active">🏠 Dashboard</a>
+            <a href="#overview">📊 Overview</a>
+            <a href="#pollution">🌫️ Pollutants</a>
+            <a href="#trends">📈 Trends</a>
+            <a href="#health">💚 Health Tips</a>
+            <a href="#about">ℹ️ About Project</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Clean Air, Healthy Life</p>
+            <span>Environmental Analytics</span>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="home">
+
+        <!-- Header -->
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">ENVIRONMENTAL DATA ANALYTICS</p>
+                <h1>Air Quality Dashboard</h1>
+                <p class="subtitle">
+                    Monitor pollution levels and explore air quality patterns.
+                </p>
+            </div>
+
+            <div class="header-badge">
+                <span class="status-dot"></span>
+                Educational Demo
+            </div>
+        </header>
+
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+            <div>
+                <p class="banner-label">BREATHE BETTER, LIVE BETTER</p>
+                <h2>Understand the air around you.</h2>
+                <p>
+                    Explore air quality indicators, compare cities,
+                    and discover pollution patterns through data.
+                </p>
+                <a href="#overview" class="primary-btn">Explore Dashboard →</a>
+            </div>
+
+            <div class="banner-icon">🌍</div>
+        </section>
+
+        <!-- Filters -->
+        <section class="filter-section">
+            <div>
+                <label for="citySelect">Select City</label>
+                <select id="citySelect">
+                    <option value="all">All Cities</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Bareilly">Bareilly</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Kolkata">Kolkata</option>
+                </select>
+            </div>
+
+            <div class="data-note">
+                ℹ️ Sample data for academic demonstration
+            </div>
+        </section>
+
+        <!-- Statistics -->
+        <section class="stats-grid" id="overview">
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Average AQI</span>
+                    <span class="stat-icon purple">🌫️</span>
+                </div>
+                <h2 id="avgAqi">175</h2>
+                <p>Across selected cities</p>
+                <div class="progress">
+                    <span style="width: 58%;"></span>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>PM2.5 Level</span>
+                    <span class="stat-icon orange">🔬</span>
+                </div>
+                <h2 id="avgPm25">72 <small>µg/m³</small></h2>
+                <p>Fine particulate matter</p>
+                <div class="progress orange-progress">
+                    <span style="width: 72%;"></span>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>PM10 Level</span>
+                    <span class="stat-icon blue">💨</span>
+                </div>
+                <h2 id="avgPm10">118 <small>µg/m³</small></h2>
+                <p>Coarse particulate matter</p>
+                <div class="progress blue-progress">
+                    <span style="width: 60%;"></span>
+                </div>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>Cities Analyzed</span>
+                    <span class="stat-icon green">🏙️</span>
+                </div>
+                <h2 id="cityCount">5</h2>
+                <p>In the sample dataset</p>
+                <div class="progress green-progress">
+                    <span style="width: 100%;"></span>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Main Charts -->
+        <section class="charts-grid" id="trends">
+
+            <article class="panel large-panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>City-wise AQI Comparison</h3>
+                        <p>Compare air quality across cities</p>
+                    </div>
+                    <span class="chart-tag">BAR CHART</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="aqiChart"></canvas>
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Pollutant Distribution</h3>
+                        <p>Average pollutant concentration</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="pollutantChart"></canvas>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Pollution Analysis -->
+        <section class="panel pollution-panel" id="pollution">
+            <div class="panel-heading">
+                <div>
+                    <h3>Pollution Pattern Analysis</h3>
+                    <p>Illustrative daily pollution trend</p>
+                </div>
+                <span class="chart-tag">LINE CHART</span>
+            </div>
+
+            <div class="chart-container trend-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+
+            <div class="insight-box">
+                <span class="insight-icon">💡</span>
+                <div>
+                    <h4>Data Insight</h4>
+                    <p id="insightText">
+                        Select a city to explore its sample AQI and pollution data.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- City Table -->
+        <section class="panel" id="cityData">
+            <div class="panel-heading">
+                <div>
+                    <h3>City Pollution Report</h3>
+                    <p>Sample air quality indicators by city</p>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>City</th>
+                            <th>AQI</th>
+                            <th>PM2.5</th>
+                            <th>PM10</th>
+                            <th>NO₂</th>
+                            <th>Air Quality</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cityTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Health Tips -->
+        <section class="health-section" id="health">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">STAY INFORMED</p>
+                    <h2>Protect Your Health</h2>
+                    <p>Simple precautions during periods of poor air quality.</p>
+                </div>
+            </div>
+
+            <div class="health-grid">
+                <article class="health-card">
+                    <span>😷</span>
+                    <h3>Reduce Exposure</h3>
+                    <p>Limit strenuous outdoor activity when pollution levels are high.</p>
+                </article>
+
+                <article class="health-card">
+                    <span>📱</span>
+                    <h3>Check AQI</h3>
+                    <p>Check reliable local air quality updates before going outdoors.</p>
+                </article>
+
+                <article class="health-card">
+                    <span>🌱</span>
+                    <h3>Reduce Pollution</h3>
+                    <p>Use public transport, conserve energy, and avoid burning waste.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about-section" id="about">
+            <div>
+                <p class="eyebrow">ABOUT THE PROJECT</p>
+                <h2>Air Quality & Pollution Pattern Analysis</h2>
+                <p>
+                    This academic project demonstrates how HTML, CSS,
+                    JavaScript, and Chart.js can present environmental
+                    data in an interactive dashboard. It compares
+                    sample air quality values and visualizes pollution
+                    patterns to support basic data interpretation.
+                </p>
+            </div>
+
+            <div class="technology-list">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>Chart.js</span>
+                <span>Data Analytics</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>AirSense | Air Quality & Pollution Pattern Analysis</p>
+            <p>Created for an academic Data Analytics project</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
